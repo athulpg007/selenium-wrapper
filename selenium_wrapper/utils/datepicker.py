@@ -1,8 +1,7 @@
 """Utility class for interacting with date pickers in Selenium tests."""
 
-from selenium_wrapper.utils.timedif import TimeDif
-
 from selenium_wrapper.locate_by import Element
+from selenium_wrapper.utils.timedif import TimeDif
 
 
 class DatePicker:

@@ -1,13 +1,11 @@
-"""
-Module with helper class to deal with timestamps.
+"""Module with helper class to deal with timestamps.
 """
 
 import datetime
 
 
 class TimeDif:
-	"""
-	Helper class to generate ISO formatted time strings with offsets from now.
+	"""Helper class to generate ISO formatted time strings with offsets from now.
 	"""
 
 	def __init__(
@@ -19,8 +17,7 @@ class TimeDif:
 		microsecond_offset: int | None = None,
 		timestamp: str | None = None,
 	) -> None:
-		"""
-		if timestamp is provided, it will be parsed and used as the base time.
+		"""If timestamp is provided, it will be parsed and used as the base time.
 		Otherwise, the current UTC time will be used as base time.
 		Offsets can be provided to adjust the time from the base time.
 
@@ -31,7 +28,6 @@ class TimeDif:
 		:param microsecond_offset: Optional[int]
 		:param timestamp: Optional[str]
 		"""
-
 		if not timestamp:
 			self.now = datetime.datetime.now(datetime.UTC)
 		else:
@@ -49,23 +45,20 @@ class TimeDif:
 			self.now += datetime.timedelta(microseconds=microsecond_offset)
 
 	def iso(self, microseconds: bool = False) -> str:
-		"""
-		Return the time as ISO formatted string.
+		"""Return the time as ISO formatted string.
 		"""
 		if microseconds:
 			return self.now.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
 		return self.now.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 	def date(self) -> str:
-		"""
-		Return the date part of the time as a string.
+		"""Return the date part of the time as a string.
 		"""
 		return self.now.strftime("%Y-%m-%d")
 
 	@staticmethod
 	def parse_timestamp(timestamp: str) -> datetime.datetime:
-		"""
-		Converts a datetime string in valid format to a datetime object.
+		"""Converts a datetime string in valid format to a datetime object.
 		"""
 		formats = [
 			"%Y-%m-%dT%H:%M:%S.%fZ",  # Format with microseconds and timezone

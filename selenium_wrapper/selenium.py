@@ -40,7 +40,7 @@ class Selenium:
 		browser: str = Browser.CHROME,
 		timeout: float = 30,
 		headless: bool = env.HEADLESS,
-		user_agent: str = f"custom-user-agent",
+		user_agent: str = "custom-user-agent",
 		login: bool = True,
 	) -> None:
 		"""Initialize the Selenium WebDriver with the specified parameters.
@@ -399,14 +399,12 @@ class Selenium:
 
 		:param delay: float: Delay between actions to avoid click Exceptions, default = 1.0.
 		"""
-		pass
 
 	def logout(self, delay: float = 1.0) -> None:
 		"""Log out of the application.
 
 		:param delay: float: Delay between actions to avoid click Exceptions, default = 1.0.
 		"""
-		pass
 
 	def switch_to_tab(self, tab_index: int = 1) -> None:
 		"""Switch focus to a new tab.
