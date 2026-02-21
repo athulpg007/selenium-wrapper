@@ -1,0 +1,24 @@
+# Docker ignore file
+.git
+.github
+
+# Virtual environment
+.venv
+
+# Python cache files
+*.pyc
+*.pyo
+__pycache__
+.pytest_cache
+.ruff_cache
+
+
+# Editor and IDE files
+.idea/
+.vscode/
+*.swp
+
+build/
+dist/
+*.egg-info
+
