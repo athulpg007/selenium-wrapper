@@ -7,16 +7,18 @@ class TestLandingPages:
 	@pytest.mark.parametrize(
 		"url",
 		[
-			"https://www.google.com",
-			"https://www.facebook.com",
-			"https://www.apple.com",
 			"https://www.amazon.com",
+			"https://www.apple.com",
+			"https://www.facebook.com",
+			"https://www.google.com",
+			"https://www.netflix.com",
 		],
 		ids=[
-			"google.com",
-			"facebook.com",
 			"apple.com",
 			"amazon.com",
+			"facebook.com",
+			"google.com",
+			"netflix.com",
 		],
 	)
 	def test_landing_page(self, browser, url):
