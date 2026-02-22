@@ -30,7 +30,7 @@ def pytest_sessionfinish():
 # named 'browser_' to avoid conflict with 'browser' parameter in other fixtures
 # after all tests are migrated, this can be renamed to 'browser'
 @pytest.fixture
-def browser_() -> Generator[Selenium, None, None]:
+def browser() -> Generator[Selenium, None, None]:
 	"""
 	Provides a Selenium browser instance for the test.
 	"""

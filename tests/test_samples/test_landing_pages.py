@@ -1,31 +1,25 @@
 import time
 
-from selenium_wrapper.selenium import Selenium
+import pytest
 
 
 class TestLandingPages:
-    def test_apple_landing_page(self):
-        browser = Selenium()
-        browser.navigate("https://www.apple.com")
-        assert "apple.com" in browser.driver.current_url
-        time.sleep(3)
-
-    def test_facebook_landing_page(self):
-        browser = Selenium()
-        browser.navigate("https://www.facebook.com")
-        assert "facebook.com" in browser.driver.current_url
-        time.sleep(3)
-
-    def test_google_landing_page(self):
-        browser = Selenium()
-        browser.navigate("https://www.google.com")
-        assert "google.com" in browser.driver.current_url
-        time.sleep(3)
-
-    def test_amazon_landing_page(self):
-        browser = Selenium()
-        browser.navigate("https://www.amazon.com")
-        assert "amazon.com" in browser.driver.current_url
-        time.sleep(3)
-
-
+	@pytest.mark.parametrize(
+		"url",
+		[
+			"https://www.google.com",
+			"https://www.facebook.com",
+			"https://www.apple.com",
+			"https://www.amazon.com",
+		],
+		ids=[
+			"google.com",
+			"facebook.com",
+			"apple.com",
+			"amazon.com",
+		],
+	)
+	def test_landing_page(self, browser, url):
+		browser.navigate(url)
+		assert url.split("www.")[1] in browser.driver.current_url
+		time.sleep(3)

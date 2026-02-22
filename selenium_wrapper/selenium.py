@@ -278,7 +278,7 @@ class Selenium:
 		action.perform()
 
 	def use_datepicker(
-			self, datepicker: tuple[str, str], timestamp: str, skip_seconds: bool = False, delay: float = 0.5
+		self, datepicker: tuple[str, str], timestamp: str, skip_seconds: bool = False, delay: float = 0.5
 	) -> None:
 		"""Use a date picker to select the date and time from a timestamp.
 
