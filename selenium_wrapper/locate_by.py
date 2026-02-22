@@ -94,6 +94,13 @@ class Element:
 		"""
 		return By.XPATH, f"//*[@data-value='{self.locator}']"
 
+	def by_data_id(self) -> tuple[str, str]:
+		"""Return a locator that finds elements by their data-id attribute.
+
+		:return:
+		"""
+		return By.XPATH, f"//*[@data-id='{self.locator}']"
+
 	def by_data_tab(self) -> tuple[str, str]:
 		"""Return a locator that finds elements by their data-tab attribute.
 

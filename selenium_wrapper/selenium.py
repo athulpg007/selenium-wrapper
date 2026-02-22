@@ -277,11 +277,14 @@ class Selenium:
 		action.send_keys(key)
 		action.perform()
 
-	def use_datepicker(self, datepicker: tuple[str, str], timestamp: str, delay: float = 0.5) -> None:
+	def use_datepicker(
+			self, datepicker: tuple[str, str], timestamp: str, skip_seconds: bool = False, delay: float = 0.5
+	) -> None:
 		"""Use a date picker to select the date and time from a timestamp.
 
 		:param datepicker: tuple[str, str]: Locator for the date picker input field.
 		:param timestamp: str: The timestamp in ISO 8601 format %Y-%m-%dT%H:%M:%SZ.
+		:param skip_seconds: bool
 		:param delay: float, default=0.5
 		"""
 		# open the datepicker
@@ -319,7 +322,8 @@ class Selenium:
 		# pick the time
 		self.input_text(self.datepicker.hour_element, provided_hour)
 		self.input_text(self.datepicker.minute_element, provided_min)
-		self.input_text(self.datepicker.second_element, provided_sec)
+		if not skip_seconds:
+			self.input_text(self.datepicker.second_element, provided_sec)
 
 		# close the datepicker
 		self.press_key(Keys.ESCAPE)
