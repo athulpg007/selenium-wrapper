@@ -1,3 +1,5 @@
+"""Implements the tests listed at https://practicetestautomation.com/practice-test-table/."""
+
 import logging
 
 from elements import practice_test_automation
