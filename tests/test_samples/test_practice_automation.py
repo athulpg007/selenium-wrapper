@@ -1,5 +1,3 @@
-import logging
-
 from elements import practice_test_automation
 
 
@@ -8,10 +6,7 @@ class TestReadTable:
 		browser.navigate("https://practicetestautomation.com/practice-test-table/")
 		browser.click(practice_test_automation.lang_java)
 		browser.wait_for_element(practice_test_automation.table)
-		result = browser.read_table(practice_test_automation.table)
-		logging.info("Read table result:")
-		for k, v in result.items():
-			logging.info(f"{k}: {v}")
+		result = browser.read_table(practice_test_automation.table, debug=True)
 		assert set(result["Language"]) == {"Java"}
 
 	def test_read_table_level_filter_beginner(self, browser):
@@ -21,9 +16,6 @@ class TestReadTable:
 		browser.click(practice_test_automation.level_advanced)
 		browser.wait_for_element(practice_test_automation.table)
 		result = browser.read_table(practice_test_automation.table)
-		logging.info("Read table result:")
-		for k, v in result.items():
-			logging.info(f"{k}: {v}")
 		assert set(result["Level"]) == {"Beginner"}
 
 	def test_read_table_enrollment_filter_10000(self, browser):
@@ -31,9 +23,6 @@ class TestReadTable:
 		browser.use_dropdown(practice_test_automation.enrollment_dropdown, practice_test_automation.choice_10000)
 		browser.wait_for_element(practice_test_automation.table)
 		result = browser.read_table(practice_test_automation.table)
-		logging.info("Read table result:")
-		for k, v in result.items():
-			logging.info(f"{k}: {v}")
 		for enrollment in result["Enrollments"]:
 			assert int(enrollment) >= 10000
 
@@ -46,10 +35,7 @@ class TestReadTable:
 		# select enrollment filter 10000
 		browser.use_dropdown(practice_test_automation.enrollment_dropdown, practice_test_automation.choice_10000)
 		browser.wait_for_element(practice_test_automation.table)
-		result = browser.read_table(practice_test_automation.table)
-		logging.info("Read table result:")
-		for k, v in result.items():
-			logging.info(f"{k}: {v}")
+		result = browser.read_table(practice_test_automation.table, debug=True)
 		assert set(result["Language"]) == {"Python"}
 		assert set(result["Level"]) == {"Beginner"}
 		for enrollment in result["Enrollments"]:

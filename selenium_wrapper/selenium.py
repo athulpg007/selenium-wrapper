@@ -205,7 +205,7 @@ class Selenium:
 				f"Current URL: {self.driver.current_url}"
 			) from e
 
-	def read_table(self, locator: tuple[str, str]) -> dict[str, list[str]] | None:
+	def read_table(self, locator: tuple[str, str]) -> dict[str, list[str]]:
 		"""Read an HTML table and return a dict mapping header -> list of column values.
 
 		:param locator: tuple[str, str]: locator for the table element
