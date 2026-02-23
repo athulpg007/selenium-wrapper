@@ -10,4 +10,7 @@ level_beginner = Element("//*[@value='Beginner']").by_xpath()
 level_intermediate = Element("//*[@value='Intermediate']").by_xpath()
 level_advanced = Element("//*[@value='Advanced']").by_xpath()
 
+enrollment_dropdown = Element("dropdown-button").by_cls()
+choice_10000 = Element("//*[@data-value='10000']").by_xpath()
+
 table = Element("courses_table").by_id()
