@@ -6,4 +6,8 @@ lang_any = Element("//*[@value='Any']").by_xpath()
 lang_java = Element("//*[@value='Java']").by_xpath()
 lang_python = Element("//*[@value='Python']").by_xpath()
 
-table_rows = Element("//table[@id='myTable']/tbody/tr")
+level_beginner = Element("//*[@value='Beginner']").by_xpath()
+level_intermediate = Element("//*[@value='Intermediate']").by_xpath()
+level_advanced = Element("//*[@value='Advanced']").by_xpath()
+
+table = Element("courses_table").by_id()

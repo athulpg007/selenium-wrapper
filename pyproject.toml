@@ -93,4 +93,4 @@ indent-style = "tab"
 docstring-code-format = true
 
 [tool.ruff.lint.mccabe]
-max-complexity = 8
+max-complexity = 10

@@ -205,6 +205,50 @@ class Selenium:
 				f"Current URL: {self.driver.current_url}"
 			) from e
 
+	def read_table(self, locator: tuple[str, str]) -> dict[str, list[str]] | None:
+		"""Read an HTML table and return a dict mapping header -> list of column values.
+
+		:param locator: tuple[str, str]: locator for the table element
+		:return: dict[str, list[str]]: keys are header names, values are lists of column values
+		"""
+		table = self.wait_for_element(locator)
+
+		# Try thead headers first, then fallback to first row cells
+		header_elements = table.find_elements("xpath", ".//thead//th")
+		if not header_elements:
+			header_elements = table.find_elements("xpath", ".//tr[1]//th | .//tr[1]//td")
+
+		headers: list[str] = []
+		for idx, he in enumerate(header_elements):
+			text = he.text.strip()
+			headers.append(text or f"column_{idx + 1}")
+
+		# Get body rows, fall back to tr elements after the first row
+		rows = table.find_elements("xpath", ".//tbody//tr")
+		if not rows:
+			rows = table.find_elements("xpath", ".//tr[position()>1]")
+
+		# If headers were not found but there are rows, infer header count from first row
+		if not headers:
+			if not rows:
+				return {}
+			first_row_cells = rows[0].find_elements("xpath", ".//td | .//th")
+			headers = [f"column_{i + 1}" for i in range(len(first_row_cells))]
+
+		# Initialize result dict with empty lists for each header
+		result: dict[str, list[str]] = {header: [] for header in headers}
+
+		for row in rows:
+			cells = row.find_elements("xpath", ".//td | .//th")
+			if not cells:
+				continue  # skip empty rows
+			for i, header in enumerate(headers):
+				cell_text = cells[i].text.strip() if i < len(cells) else ""
+				if cell_text != "":
+					result[header].append(cell_text)
+
+		return result
+
 	def click(self, locator: tuple[str, str]) -> None:
 		"""Wait for an element to be clickable and clicks it.
 
