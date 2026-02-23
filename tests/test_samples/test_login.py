@@ -1,3 +1,5 @@
+"""Implements the tests at https://practicetestautomation.com/practice-test-login/"""
+
 from elements import login
 
 

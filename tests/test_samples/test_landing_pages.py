@@ -1,3 +1,5 @@
+"""Visits the landing pages of popular websites and verifies that the URL is correct."""
+
 import time
 
 import pytest

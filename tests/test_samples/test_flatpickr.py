@@ -1,3 +1,5 @@
+"""Visit the flatpickr demo page and use the datetimepicker to select a date and time."""
+
 import time
 
 import pytest
