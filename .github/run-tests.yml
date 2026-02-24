@@ -1,7 +1,11 @@
 # GitHub Actions workflow to run tests on pull requests.
 
 name: run-tests
-on: pull_request
+on:
+  pull_request:
+  push:
+    branches:
+      - main
 jobs:
   test:
     runs-on: ubuntu-latest

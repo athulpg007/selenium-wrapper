@@ -14,3 +14,6 @@ login_error_message = Element(
 ).by_text_contains()
 
 inventory_container = Element("inventory_container").by_id()
+
+add_to_cart_backpack = Element("add-to-cart-sauce-labs-backpack").by_id()
+cart_badge = Element("shopping_cart_badge").by_cls()

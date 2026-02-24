@@ -20,3 +20,14 @@ class TestSauceDemo:
 		browser.click(sauce_demo.login_button)
 		browser.wait_for_element(sauce_demo.login_error_button)
 		browser.wait_for_element(sauce_demo.login_error_message)
+
+	def test_add_to_cart(self, browser):
+		browser.navigate("https://www.saucedemo.com/")
+		for element in sauce_demo.login_elements:
+			browser.wait_for_element(element)
+		browser.input_text(sauce_demo.username, "standard_user")
+		browser.input_text(sauce_demo.password, "secret_sauce")
+		browser.click(sauce_demo.login_button)
+		browser.wait_for_element(sauce_demo.inventory_container)
+		browser.click(sauce_demo.add_to_cart_backpack)
+		browser.wait_for_element(sauce_demo.cart_badge)

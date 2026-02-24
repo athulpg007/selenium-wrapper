@@ -92,6 +92,9 @@ class Selenium:
 					"download.default_directory": self.download_dir,
 					"download.prompt_for_download": False,
 					"download.directory_upgrade": True,
+					"profile.password_manager_leak_detection": False,
+					"credentials_enable_service": False,
+					"profile.password_manager_enabled": False,
 				}
 				options.add_argument("--window-size=1280,800")
 				options.add_experimental_option("prefs", prefs)
