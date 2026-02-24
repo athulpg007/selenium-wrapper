@@ -1,0 +1,48 @@
+# GitHub Actions workflow to run tests on pull requests.
+
+name: run-tests
+on: pull_request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Install dependencies
+        run: |
+          uv sync --frozen --no-install-project
+      - name: Install Google Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
+          google-chrome --version
+      - name: Install matching ChromeDriver
+        run: |
+          CHROME_VERSION=$(google-chrome --version | awk '{print $3}') && \
+          echo "Installed Chrome version: $CHROME_VERSION" && \
+          wget "https://storage.googleapis.com/chrome-for-testing-public/${CHROME_VERSION}/linux64/chromedriver-linux64.zip" && \
+          unzip chromedriver-linux64.zip
+          sudo mv chromedriver-linux64/chromedriver /usr/bin/chromedriver
+          sudo chmod +x /usr/bin/chromedriver
+          chromedriver --version
+
+      - name: pytest
+        run: |
+          source .venv/bin/activate
+          HEADLESS=True \
+          pytest tests/test_acceptance/ -v -n auto
