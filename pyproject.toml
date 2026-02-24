@@ -15,8 +15,8 @@ dependencies = [
     "pytest",
     "pytest-xdist",
     "selenium",
-    "coverage>=7.13.4",
-    "pytest-cov>=7.0.0",
+    "coverage",
+    "pytest-cov",
 ]
 
 [tool.setuptools.packages.find]
