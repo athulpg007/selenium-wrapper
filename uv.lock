@@ -406,9 +406,9 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "coverage", specifier = ">=7.13.4" },
+    { name = "coverage" },
     { name = "pytest" },
-    { name = "pytest-cov", specifier = ">=7.0.0" },
+    { name = "pytest-cov" },
     { name = "pytest-xdist" },
     { name = "requests" },
     { name = "selenium" },
