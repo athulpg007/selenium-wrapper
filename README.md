@@ -1,6 +1,6 @@
 # selenium-wrapper
 
-Python Selenium wrapper to write browser tests.
+A light-weight Python wrapper to write Selenium browser tests.
 
 ## BLUF
 - Provides a friendly wrapper to run Selenium tests in a containerized setting.
