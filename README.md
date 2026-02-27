@@ -37,14 +37,24 @@ browser.search_with_dropdown(satcat.search_input, "25544", dynamic_search_result
 browser.wait_for_element(satcat.cds_tabs_list)
 assert "sats/25544" in browser.driver.current_url
 ```
-![Datepicker example](media/examples/satcat.gif)
+![Search with dropdown example](media/examples/satcat.gif)
 
 See the `tests/test_samples/test_flatpickr.py` for full working example.
 ```python
 browser.navigate("https://flatpickr.js.org/examples/#datetime")
 browser.use_datepicker(TimeDif(day_offset=90).iso(), timestamp, skip_seconds=True)
 ```
-![Search with dropdown example](media/examples/flatpickr.gif)
+![Datepicker example](media/examples/flatpickr.gif)
+
+See the `tests/test_samples/test_wiki_image_download.py` for full working example.
+```python
+browser.navigate("https://en.wikipedia.org/wiki/Atmospheric_entry#/media/File:Entry.jpg")
+browser.wait_for_element(wikipedia_image.download_icon)
+browser.use_dropdown(wikipedia_image.download_icon, wikipedia_image.download_btn)
+browser.read_file(pattern="*.jpg", binary=True, timeout=10)
+```
+![File download example](media/examples/wiki_file_download.gif)
+
 ## Setup Instructions
 - Clone the repository.
 - Set up a virtual environment (Python `3.12`, `3.13`, or `3.14`).
@@ -52,37 +62,16 @@ browser.use_datepicker(TimeDif(day_offset=90).iso(), timestamp, skip_seconds=Tru
   - using uv: `uv sync`, or
   - using pip: `pip install -r requirements.txt`
 
-## Running Tests
-
-### Use Docker (recommended)
-- If you have Docker installed, you can run the tests in a Docker container.
+## Running Tests inside Docker Container
 - You must have a `.env` file in the root directory with the following variables:
 ```
 # HEADLESS should be always be set to True for running in Docker container
 HEADLESS=True
 
 # Additional configuration
-NUM_CORES=5
+NUM_CORES=2
 ```
 - To run the tests in the Docker container, run:
 ```
-docker-compose up --build
+docker compose up --build
 ```
-- If you have Docker Desktop, you can go to "Containers" and see the logs.
-
-### Use Local Environment
-- You will need to have the following:
-  - Python `3.12`, `3.13`, or `3.14` virtual environment.
-  - Google Chrome browser (required).
-  - Firefox browser installed (optional).
-- Use `pytest` to run the tests.
-- The following environment variables are optional:
-  - `HEADLESS=` [Optional, `bool`]
-    - If set to `True`, the tests will run in headless mode.
-    - Defaults to `false`.
-
-#### Running the acceptance tests
-- To run all (excluding slow tests) in parallel using 4 CPU cores.
-```
-pytest tests/ -m "not slow" -n 4
-````
