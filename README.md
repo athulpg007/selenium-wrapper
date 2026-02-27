@@ -37,7 +37,14 @@ browser.search_with_dropdown(satcat.search_input, "25544", dynamic_search_result
 browser.wait_for_element(satcat.cds_tabs_list)
 assert "sats/25544" in browser.driver.current_url
 ```
-![Search with dropdown example](media/examples/satcat.gif)
+![Datepicker example](media/examples/satcat.gif)
+
+See the `tests/test_samples/test_flatpickr.py` for full working example.
+```python
+browser.navigate("https://flatpickr.js.org/examples/#datetime")
+browser.use_datepicker(TimeDif(day_offset=90).iso(), timestamp, skip_seconds=True)
+```
+![Search with dropdown example](media/examples/flatpickr.gif)
 ## Setup Instructions
 - Clone the repository.
 - Set up a virtual environment (Python `3.12`, `3.13`, or `3.14`).
