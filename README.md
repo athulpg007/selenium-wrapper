@@ -5,6 +5,23 @@ A light-weight Python wrapper to write Selenium browser tests.
 ## BLUF
 - Provides a friendly wrapper to run Selenium tests in a containerized setting.
 
+## Getting Started
+`selenium-wrapper` is a Python package that provides a simple and intuitive interface for writing Selenium browser tests. It abstracts away the complexities of Selenium and allows you to focus on writing your test logic. The `browser` is a standard fixture which initializes a Chrome browser.
+
+#### A simple example to log in to a website:
+```python
+browser.navigate("https://practicetestautomation.com/practice-test-login/")
+for element in login.elements:
+    browser.wait_for_element(element)
+browser.input_text(login.username, "student")
+browser.input_text(login.password, "Password123")
+browser.click(login.submit)
+browser.wait_for_element(login.logout)
+```
+See the `tests/test_samples/test_login` directory for full working example.
+![Login Example](media/examples/example-01.gif)
+
+
 ## Setup Instructions
 - Clone the repository.
 - Set up a virtual environment (Python `3.12`, `3.13`, or `3.14`).
