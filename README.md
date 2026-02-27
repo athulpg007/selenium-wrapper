@@ -33,8 +33,7 @@ See the `tests/test_samples/test_satcat.py` for full working example.
 ```python
 browser.navigate("https://www.satcat.com/")
 browser.wait_for_element(satcat.search_input)
-norad_id: str = "25544"
-browser.search_with_dropdown(satcat.search_input, norad_id, dynamic_search_result(norad_id))
+browser.search_with_dropdown(satcat.search_input, "25544", dynamic_search_result(norad_id))
 browser.wait_for_element(satcat.cds_tabs_list)
 assert "sats/25544" in browser.driver.current_url
 ```
