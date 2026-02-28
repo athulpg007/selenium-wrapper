@@ -1,9 +1,9 @@
 # selenium-wrapper
 
-A light-weight Python wrapper to write and run Selenium browser tests in a Docker container.
+A light-weight Python wrapper to write Selenium browser tests and run them in a Docker container.
 
 ## Getting Started
-`selenium-wrapper` is a Python package that provides a simple and intuitive interface for writing Selenium browser tests. It abstracts away the complexities of Selenium and allows you to focus on writing your test logic. The `browser` is a standard fixture which initializes a Chrome browser.
+`selenium-wrapper` is a Python package that provides a simple and intuitive interface for writing Selenium browser tests. It abstracts away the complexities of Selenium and allows you to focus on writing your test logic. The `browser` is a standard `pytest` fixture which initializes a Chrome browser, and captures console logs at the end of the test.
 
 #### A simple example to log in to a website:
 See the `tests/test_samples/test_login.py` for full working example.
@@ -33,7 +33,8 @@ See the `tests/test_samples/test_satcat.py` for full working example.
 ```python
 browser.navigate("https://www.satcat.com/")
 browser.wait_for_element(satcat.search_input)
-browser.search_with_dropdown(satcat.search_input, "25544", dynamic_search_result(norad_id))
+norad_id = "25544"
+browser.search_with_dropdown(satcat.search_input, norad_id, dynamic_search_result(norad_id))
 browser.wait_for_element(satcat.cds_tabs_list)
 assert "sats/25544" in browser.driver.current_url
 ```
@@ -63,6 +64,7 @@ browser.read_file(pattern="*.jpg", binary=True, timeout=10)
   - using pip: `pip install -r requirements.txt`
 
 ## Running Tests inside Docker Container
+The `Dockerfile` and `docker-compose.yml` files are provided to run the tests in a Docker container. Building the image will download the latest Chrome browser and the corresponding ChromeDriver, install Python dependencies using `uv` and run the tests in headless mode.
 - You must have a `.env` file in the root directory with the following variables:
 ```
 # HEADLESS should be always be set to True for running in Docker container

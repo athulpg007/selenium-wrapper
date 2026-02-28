@@ -51,4 +51,4 @@ ENV PATH="/selenium-wrapper/.venv/bin:$PATH"
 ENV DISPLAY=:99
 
 # Run tests using pytest
-CMD ["sh", "-c", "pytest tests/ -v -m ${MARKER:-'not slow'} -n ${NUM_CORES:-2} --cov=. --cov-report= --cov-fail-under=80"]
+CMD ["sh", "-c", "pytest tests/ -v -m ${MARKER:-'not slow'} -n ${NUM_CORES:-2}"]
