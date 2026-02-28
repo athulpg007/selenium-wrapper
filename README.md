@@ -64,6 +64,7 @@ browser.read_file(pattern="*.jpg", binary=True, timeout=10)
   - using pip: `pip install -r requirements.txt`
 
 ## Running Tests inside Docker Container
+The `Dockerfile` and `docker-compose.yml` files are provided to run the tests in a Docker container. Building the image will download the latest Chrome browser and the corresponding ChromeDriver, install Python dependencies using `uv` and run the tests in headless mode.
 - You must have a `.env` file in the root directory with the following variables:
 ```
 # HEADLESS should be always be set to True for running in Docker container
