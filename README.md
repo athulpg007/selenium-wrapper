@@ -9,8 +9,6 @@ A light-weight Python wrapper to write Selenium browser tests and run them in a 
 See the `tests/test_samples/test_login.py` for full working example.
 ```python
 browser.navigate("https://practicetestautomation.com/practice-test-login/")
-for element in login.elements:
-    browser.wait_for_element(element)
 browser.input_text(login.username, "student")
 browser.input_text(login.password, "Password123")
 browser.click(login.submit)
@@ -77,3 +75,16 @@ NUM_CORES=2
 ```
 docker compose up --build
 ```
+
+## Contributing
+Contributions are welcome! Please feel free to submit a pull request or open an issue.
+
+If you want to contribute, please follow these guidelines:
+- Fork the repository and create a new branch for your feature or bug fix.
+- Write clear and concise commit messages.
+- Ensure that your code follows the existing style and conventions.
+  - Run `ruff format` and `ruff check` (enforced during CI checks).
+- Write tests for your changes and ensure that all tests pass before submitting a pull request.
+  - Run your tests locally using `pytest`, or using the Docker container as described above.
+  - Make sure the test coverage does not fall below 80% (enforced during CI checks).
+- Submit a pull request with a clear description of your changes and the problem it solves.
