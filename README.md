@@ -75,6 +75,7 @@ NUM_CORES=2
 ```
 docker compose up --build
 ```
+![docker compose example](media/examples/docker-compose.gif)
 
 ## Contributing
 Contributions are welcome! Please feel free to submit a pull request or open an issue.
