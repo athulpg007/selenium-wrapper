@@ -25,7 +25,9 @@ RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd6
 # Download and install matching chromedriver version
 RUN CHROME_VERSION=$(google-chrome --version | awk '{print $3}') && \
     echo "Installed Chrome version: $CHROME_VERSION" && \
-    wget "https://storage.googleapis.com/chrome-for-testing-public/${CHROME_VERSION}/linux64/chromedriver-linux64.zip" && \
+    CHROMEDRIVER_VERSION=$(wget -qO- "https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json" | \
+	python -c "import sys, json; v=json.load(sys.stdin); print(v['channels']['Stable']['version'])") && \
+	wget "https://storage.googleapis.com/chrome-for-testing-public/${CHROMEDRIVER_VERSION}/linux64/chromedriver-linux64.zip" && \
     unzip chromedriver-linux64.zip && \
     mv chromedriver-linux64/chromedriver /usr/bin/chromedriver && \
     chmod +x /usr/bin/chromedriver && \
