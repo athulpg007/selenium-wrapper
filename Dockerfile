@@ -11,19 +11,34 @@ RUN apt-get update && apt-get install -y \
     libnspr4 \
     libnss3 \
     ca-certificates \
+    fonts-liberation \
+    libasound2 \
+    libx11-xcb1 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxdamage1 \
+    libxi6 \
+    libxrandr2 \
+    libxss1 \
+    libxtst6 \
+    x11-utils \
     curl \
     jq \
     unzip \
     && rm -rf /var/lib/apt/lists/*
 
-# Download and install Google Chrome (stable) for amd64
-RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-    apt-get update && apt-get install -y ./google-chrome-stable_current_amd64.deb && \
-    rm google-chrome-stable_current_amd64.deb && \
-    rm -rf /var/lib/apt/lists/*
+# Download and install latest stable Google Chrome for Testing
+RUN apt-get update && \
+    CHROME_VERSION=$(wget -qO- "https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json" | \
+    python -c "import sys, json; v=json.load(sys.stdin); print(v['channels']['Stable']['version'])") && \
+    wget "https://storage.googleapis.com/chrome-for-testing-public/${CHROME_VERSION}/linux64/chrome-linux64.zip" && \
+    unzip chrome-linux64.zip && \
+    mv chrome-linux64 /opt/ && \
+    ln -s /opt/chrome-linux64/chrome /usr/bin/google-chrome && \
+    rm -rf chrome-linux64 chrome-linux64.zip
 
-# Download and install matching chromedriver version
-RUN CHROME_VERSION=$(google-chrome --version | awk '{print $3}') && \
+# Download and install Chromedriver
+RUN CHROME_VERSION=$(google-chrome --version | awk '{print $5}') && \
     echo "Installed Chrome version: $CHROME_VERSION" && \
     CHROMEDRIVER_VERSION=$(wget -qO- "https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json" | \
 	python -c "import sys, json; v=json.load(sys.stdin); print(v['channels']['Stable']['version'])") && \
