@@ -1,4 +1,4 @@
-FROM ghcr.io/astral-sh/uv:0.11.3 AS uv-stage
+FROM ghcr.io/astral-sh/uv:0.11.7 AS uv-stage
 FROM python:3.14-slim
 
 # Install dependencies
