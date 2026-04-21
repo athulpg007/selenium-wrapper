@@ -7,6 +7,6 @@ jobs:
       - uses: actions/checkout@v6
       - uses: astral-sh/ruff-action@v3
         with:
-          version: 0.15.8
+          version: 0.15.11
           args: "check"
       - run: ruff format --diff
