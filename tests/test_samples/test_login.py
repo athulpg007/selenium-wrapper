@@ -1,8 +1,11 @@
 """Implements the tests at https://practicetestautomation.com/practice-test-login/"""
 
+import pytest
+
 from elements import login
 
 
+@pytest.mark.skip("https://practicetestautomation.com/practice-test-table/: 404")
 class TestLogin:
 	def test_login(self, browser):
 		browser.navigate("https://practicetestautomation.com/practice-test-login/")

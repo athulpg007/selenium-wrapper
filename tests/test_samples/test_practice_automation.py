@@ -2,9 +2,12 @@
 
 import logging
 
+import pytest
+
 from elements import practice_test_automation
 
 
+@pytest.mark.skip("https://practicetestautomation.com/practice-test-table/: 404")
 class TestReadTable:
 	def test_read_table_lang_filter_java(self, browser):
 		browser.navigate("https://practicetestautomation.com/practice-test-table/")
