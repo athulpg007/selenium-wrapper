@@ -2,6 +2,7 @@
 
 from selenium_wrapper.locate_by import Element
 
+reject_cookies = Element("Reject").by_text_contains()
 search_input = Element("sat-search").by_id()
 
 
